@@ -1,7 +1,10 @@
+import "./globals.css";
+import "@mantine/core/styles.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import type { FC, PropsWithChildren } from "react";
-import "./globals.css";
+import AppProviders from "@/providers/AppProviders";
+import { ColorSchemeScript } from "@mantine/core";
 
 const font = Inter({ subsets: ["latin"], fallback: ["Arial"] });
 
@@ -13,7 +16,14 @@ export const metadata: Metadata = {
 const MainLayout: FC<PropsWithChildren> = ({ children }) => {
   return (
     <html lang="en">
-      <body className={font.className}>{children}</body>
+      <head>
+        <ColorSchemeScript defaultColorScheme="dark" />
+      </head>
+      <body className={font.className}>
+        <AppProviders fontFamily={font.style.fontFamily}>
+          {children}
+        </AppProviders>
+      </body>
     </html>
   );
 };
