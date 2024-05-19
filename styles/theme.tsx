@@ -2,6 +2,6 @@
 
 import { createTheme, mergeMantineTheme, DEFAULT_THEME } from "@mantine/core";
 
-export const theme = createTheme({});
+export const customTheme = createTheme({});
 
-export const mantineTheme = mergeMantineTheme(DEFAULT_THEME, theme);
+export const theme = mergeMantineTheme(DEFAULT_THEME, customTheme);

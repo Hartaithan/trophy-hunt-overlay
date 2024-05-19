@@ -1,12 +1,12 @@
 import "./globals.css";
 import "@mantine/core/styles.css";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Rubik } from "next/font/google";
 import type { FC, PropsWithChildren } from "react";
 import AppProviders from "@/providers/AppProviders";
 import { ColorSchemeScript } from "@mantine/core";
 
-const font = Inter({ subsets: ["latin"], fallback: ["Arial"] });
+const font = Rubik({ subsets: ["latin"], fallback: ["Arial"] });
 
 export const metadata: Metadata = {
   title: "Trophy Hunt Overlay",
