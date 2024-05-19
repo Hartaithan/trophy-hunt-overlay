@@ -1,10 +1,10 @@
 import type { FC } from "react";
-import { Anchor, Container, Group, Title } from "@mantine/core";
+import { Anchor, Group, Title } from "@mantine/core";
 import Link from "next/link";
 
 const SignInPage: FC = () => {
   return (
-    <Container w="100%">
+    <>
       <Title>SignInPage</Title>
       <Group>
         <Anchor component={Link} href="/">
@@ -14,7 +14,7 @@ const SignInPage: FC = () => {
           SignUp
         </Anchor>
       </Group>
-    </Container>
+    </>
   );
 };
 
