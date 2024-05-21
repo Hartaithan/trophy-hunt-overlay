@@ -1,0 +1,9 @@
+.header {
+  height: 100%;
+  padding-left: var(--mantine-spacing-md);
+  padding-right: var(--mantine-spacing-md);
+}
+
+.navbar {
+  padding: var(--mantine-spacing-md);
+}
