@@ -1,0 +1,20 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+}
+
+.fields {
+  flex-direction: column;
+  gap: var(--mantine-spacing-md);
+}
+
+.message {
+  text-align: center;
+  margin-top: var(--mantine-spacing-lg);
+  font-size: var(--mantine-font-size-sm);
+  & > a {
+    font-weight: 600;
+    font-size: var(--mantine-font-size-sm);
+  }
+}
