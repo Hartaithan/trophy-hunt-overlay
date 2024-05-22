@@ -1,0 +1,17 @@
+.container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  font-weight: 500;
+  text-decoration: none;
+  padding: var(--mantine-spacing-xs);
+  font-size: var(--mantine-font-size-sm);
+  border-radius: var(--mantine-radius-sm);
+  color: light-dark(var(--mantine-color-gray-7), var(--mantine-color-dark-0));
+  &:hover {
+    background-color: light-dark(
+      var(--mantine-color-gray-0),
+      var(--mantine-color-dark-6)
+    );
+  }
+}
