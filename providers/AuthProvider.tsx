@@ -5,6 +5,7 @@ import { useState, useEffect, useContext, createContext, useMemo } from "react";
 import type { User } from "firebase/auth";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "@/utils/firebase";
+import { LoadingOverlay } from "@mantine/core";
 
 interface Context {
   user: User | null;
@@ -43,7 +44,11 @@ export const AuthProvider: FC<PropsWithChildren> = (props) => {
 
   return (
     <AuthContext.Provider value={exposed}>
-      {isLoading ? <div>Loading...</div> : children}
+      {isLoading ? (
+        <LoadingOverlay visible overlayProps={{ opacity: 0 }} />
+      ) : (
+        children
+      )}
     </AuthContext.Provider>
   );
 };
