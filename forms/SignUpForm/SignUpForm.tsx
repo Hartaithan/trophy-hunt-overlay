@@ -12,9 +12,13 @@ import type { FC } from "react";
 import classes from "./SignUpForm.module.css";
 import { useForm } from "@mantine/form";
 import Link from "next/link";
+import type { SignUpForm as Form } from "@/models/auth";
+import { signUp } from "@/actions/signUp";
+import { useRouter } from "next/navigation";
 
 const SignUpForm: FC = () => {
-  const form = useForm({
+  const { push } = useRouter();
+  const form = useForm<Form>({
     mode: "uncontrolled",
     initialValues: {
       username: "",
@@ -22,8 +26,9 @@ const SignUpForm: FC = () => {
     },
   });
 
-  const handleSubmit = form.onSubmit((values) => {
-    console.info("values", values);
+  const handleSubmit = form.onSubmit(async (values) => {
+    const { status } = await signUp(values);
+    if (status === "success") push("/");
   });
 
   return (
