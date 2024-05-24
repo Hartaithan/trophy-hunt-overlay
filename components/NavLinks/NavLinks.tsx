@@ -11,9 +11,9 @@ const links: NavItem[] = [
     href: "/overlay",
   },
   {
-    id: "profile",
-    label: "Profile",
-    href: "/profile",
+    id: "games",
+    label: "Games",
+    href: "/games",
   },
 ];
 
