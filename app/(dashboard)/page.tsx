@@ -10,7 +10,10 @@ const HomePage: FC = () => {
   return (
     <PageContainer>
       HomePage
-      <Text component="pre" size="xs">
+      <Text
+        component="pre"
+        size="xs"
+        style={{ wordBreak: "break-all", whiteSpace: "pre-wrap" }}>
         {JSON.stringify(auth, null, 2)}
       </Text>
     </PageContainer>
