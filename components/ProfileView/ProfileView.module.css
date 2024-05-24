@@ -1,0 +1,20 @@
+.container {
+  min-height: 70px;
+  max-height: 150px;
+  border-top: 1px solid var(--mantine-color-default-border);
+  padding: var(--mantine-spacing-md);
+  align-items: center;
+}
+
+.username {
+  flex: 1;
+  margin-left: var(--mantine-spacing-md);
+}
+
+.signOut {
+  height: 40px;
+  width: 40px;
+  & > span > svg {
+    transform: translateX(2px);
+  }
+}

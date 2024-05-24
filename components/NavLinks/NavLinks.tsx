@@ -22,7 +22,6 @@ const NavLinks: FC = () => {
     () => links.map((link) => <NavLink key={link.id} {...link} />),
     [],
   );
-
   return <Stack className={classes.container}>{navLinks}</Stack>;
 };
 
