@@ -1,5 +1,6 @@
 import "./globals.css";
 import "@mantine/core/styles.css";
+import "@mantine/notifications/styles.css";
 import type { Metadata } from "next";
 import { Rubik } from "next/font/google";
 import type { FC, PropsWithChildren } from "react";

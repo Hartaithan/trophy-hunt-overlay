@@ -15,6 +15,8 @@ import Link from "next/link";
 import type { SignInForm as Form } from "@/models/auth";
 import { signIn } from "@/actions/signIn";
 import { useRouter } from "next/navigation";
+import { notifications } from "@mantine/notifications";
+import { IconAlertOctagon, IconCheck } from "@tabler/icons-react";
 
 const SignInForm: FC = () => {
   const { push } = useRouter();
@@ -27,8 +29,35 @@ const SignInForm: FC = () => {
   });
 
   const handleSubmit = form.onSubmit(async (values) => {
-    const { status } = await signIn(values);
-    if (status === "success") push("/");
+    const id = notifications.show({
+      loading: true,
+      title: "Signing in...",
+      message: "It shouldn't take long, don't reload the page.",
+      autoClose: false,
+      withCloseButton: false,
+    });
+    const response = await signIn(values);
+    if (response?.status === "success") {
+      notifications.update({
+        id,
+        loading: false,
+        title: "Success!",
+        message: response?.message,
+        icon: <IconCheck size="1rem" />,
+        autoClose: 2000,
+      });
+      push("/");
+    } else {
+      notifications.update({
+        id,
+        loading: false,
+        color: "red",
+        title: "Something went wrong!",
+        message: response?.message,
+        icon: <IconAlertOctagon size="1rem" />,
+        withCloseButton: true,
+      });
+    }
   });
 
   return (

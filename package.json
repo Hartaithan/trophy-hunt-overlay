@@ -12,9 +12,10 @@
     "format": "prettier . --write"
   },
   "dependencies": {
-    "@mantine/core": "^7.9.2",
-    "@mantine/form": "^7.9.2",
-    "@mantine/hooks": "^7.9.2",
+    "@mantine/core": "^7.10.0",
+    "@mantine/form": "^7.10.0",
+    "@mantine/hooks": "^7.10.0",
+    "@mantine/notifications": "^7.10.0",
     "@tabler/icons-react": "^3.5.0",
     "clsx": "^2.1.1",
     "firebase": "^10.12.0",
