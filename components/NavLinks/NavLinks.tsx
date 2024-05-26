@@ -7,6 +7,7 @@ import {
   IconDeviceDesktop,
   IconDeviceGamepad2,
   IconHome,
+  IconTextPlus,
 } from "@tabler/icons-react";
 
 const links: NavItem[] = [
@@ -15,6 +16,12 @@ const links: NavItem[] = [
     label: "Home",
     href: "/",
     icon: IconHome,
+  },
+  {
+    id: "add",
+    label: "Add games",
+    href: "/add",
+    icon: IconTextPlus,
   },
   {
     id: "games",
