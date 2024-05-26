@@ -3,20 +3,31 @@ import { Stack } from "@mantine/core";
 import { useMemo, type FC } from "react";
 import NavLink from "@/components/NavLink/NavLink";
 import classes from "./NavLinks.module.css";
-import { IconDeviceDesktop, IconDeviceGamepad2 } from "@tabler/icons-react";
+import {
+  IconDeviceDesktop,
+  IconDeviceGamepad2,
+  IconHome,
+} from "@tabler/icons-react";
 
 const links: NavItem[] = [
   {
-    id: "overlay",
-    label: "Overlay",
-    href: "/overlay",
-    icon: IconDeviceDesktop,
+    id: "home",
+    label: "Home",
+    href: "/",
+    icon: IconHome,
   },
   {
     id: "games",
     label: "Games",
     href: "/games",
     icon: IconDeviceGamepad2,
+  },
+  {
+    id: "overlay",
+    label: "Overlay",
+    href: "/overlay",
+    icon: IconDeviceDesktop,
+    target: "_blank",
   },
 ];
 
