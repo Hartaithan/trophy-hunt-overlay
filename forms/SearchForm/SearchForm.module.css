@@ -1,0 +1,12 @@
+.container {
+  flex-direction: column;
+  width: 100%;
+  gap: var(--mantine-spacing-xs);
+  @media (max-width: $mantine-breakpoint-sm) {
+    gap: 0.25rem;
+  }
+}
+
+.group {
+  justify-content: space-between;
+}
