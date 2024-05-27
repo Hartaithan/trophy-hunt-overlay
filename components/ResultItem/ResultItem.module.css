@@ -1,0 +1,38 @@
+.container {
+  height: 100%;
+  flex-direction: row;
+  border-radius: 0.4rem;
+  gap: var(--mantine-spacing-sm);
+  align-items: center;
+}
+
+.content {
+  flex-direction: column;
+  justify-content: center;
+  flex-grow: 1;
+}
+
+.name {
+  font-size: var(--mantine-font-size-xs);
+  font-weight: 600;
+}
+
+.platform {
+  font-size: var(--mantine-font-size-xs);
+}
+
+.button {
+  height: 100%;
+  width: 40px;
+  min-width: 40px;
+  aspect-ratio: 1 / 1;
+}
+
+.button > span {
+  display: flex;
+  flex-direction: column;
+}
+
+.button > span > p {
+  font-size: var(--mantine-font-size-xs);
+}
