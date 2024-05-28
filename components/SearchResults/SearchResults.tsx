@@ -1,8 +1,8 @@
+import type { FC } from "react";
+import { memo } from "react";
 import type { SearchResult } from "@/models/search";
 import { Grid, GridCol, Text } from "@mantine/core";
-import { memo } from "react";
-import type { FC } from "react";
-import ResultItem from "../ResultItem/ResultItem";
+import ResultItem from "@/components/ResultItem/ResultItem";
 
 interface Props {
   results: SearchResult[] | null;

@@ -4,7 +4,7 @@ import type { SearchResult } from "@/models/search";
 import { ActionIcon, Flex, Text } from "@mantine/core";
 import { useCallback, type FC } from "react";
 import classes from "./ResultItem.module.css";
-import ResultImage from "../ResultImage/ResultImage";
+import ResultImage from "@/components/ResultImage/ResultImage";
 import { IconPlus } from "@tabler/icons-react";
 
 interface Props {

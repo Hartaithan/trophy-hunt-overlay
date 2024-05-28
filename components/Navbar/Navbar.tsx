@@ -1,7 +1,7 @@
 import { AppShell } from "@mantine/core";
 import type { FC } from "react";
 import NavLinks from "@/components/NavLinks/NavLinks";
-import ProfileView from "../ProfileView/ProfileView";
+import ProfileView from "@/components/ProfileView/ProfileView";
 
 const Navbar: FC = () => {
   return (
