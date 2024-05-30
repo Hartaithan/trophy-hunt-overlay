@@ -22,7 +22,7 @@ const SearchResults: FC<Props> = (props) => {
       {results &&
         results.length > 0 &&
         results.map((result) => (
-          <GridCol span={4} key={result.path}>
+          <GridCol span={3} key={result.path}>
             <ResultItem item={result} />
           </GridCol>
         ))}

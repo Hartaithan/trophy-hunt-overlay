@@ -1,38 +1,33 @@
 .container {
   height: 100%;
-  flex-direction: row;
-  border-radius: 0.4rem;
+  flex-direction: column;
+  border-radius: var(--mantine-radius-md);
   gap: var(--mantine-spacing-sm);
   align-items: center;
+  background: var(--mantine-color-dark-6);
+  padding: var(--mantine-spacing-sm) var(--mantine-spacing-md);
 }
 
-.content {
-  flex-direction: column;
-  justify-content: center;
-  flex-grow: 1;
+.hero {
+  width: 100%;
+  align-items: center;
+  gap: var(--mantine-spacing-sm);
 }
 
 .name {
-  font-size: var(--mantine-font-size-xs);
+  font-size: var(--mantine-font-size-sm);
   font-weight: 600;
 }
 
-.platform {
-  font-size: var(--mantine-font-size-xs);
+.details {
+  width: 100%;
+  gap: var(--mantine-spacing-sm);
 }
 
-.button {
-  height: 100%;
-  width: 40px;
-  min-width: 40px;
-  aspect-ratio: 1 / 1;
+.badge {
+  font-weight: 500;
 }
 
-.button > span {
-  display: flex;
-  flex-direction: column;
-}
-
-.button > span > p {
-  font-size: var(--mantine-font-size-xs);
+.add {
+  width: 100%;
 }

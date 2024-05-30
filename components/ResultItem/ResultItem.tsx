@@ -1,7 +1,7 @@
 "use client";
 
 import type { SearchResult } from "@/models/search";
-import { ActionIcon, Flex, Text } from "@mantine/core";
+import { Badge, Button, Flex, Text, Tooltip } from "@mantine/core";
 import { useCallback, type FC } from "react";
 import classes from "./ResultItem.module.css";
 import ResultImage from "@/components/ResultImage/ResultImage";
@@ -51,24 +51,34 @@ const ResultItem: FC<Props> = (props) => {
 
   return (
     <Flex className={classes.container}>
-      <ResultImage item={item} />
-      <Flex className={classes.content}>
-        <Text className={classes.name}>
+      <Flex className={classes.hero}>
+        <ResultImage item={item} />
+        <Text className={classes.name} lineClamp={3}>
           {item.name}
-          {item.region && (
-            <Text className={classes.name} component="span">
-              &nbsp;{`• ${item.region}`}
-            </Text>
-          )}
         </Text>
+      </Flex>
+      <Flex className={classes.details}>
+        {item.region && (
+          <Tooltip label="Region">
+            <Badge className={classes.badge}>{item.region}</Badge>
+          </Tooltip>
+        )}
         {item.platforms && (
-          <Text className={classes.platform}>{item.platforms?.join(", ")}</Text>
+          <Tooltip label="Platform">
+            <Badge className={classes.badge}>
+              {item.platforms?.join(", ")}
+            </Badge>
+          </Tooltip>
         )}
       </Flex>
-      <ActionIcon className={classes.button} onClick={() => handleAdd(item)}>
-        <IconPlus width={18} height={18} />
-        <Text>Add</Text>
-      </ActionIcon>
+      <Button
+        size="xs"
+        variant="light"
+        className={classes.add}
+        leftSection={<IconPlus width={18} height={18} />}
+        onClick={() => handleAdd(item)}>
+        Add
+      </Button>
     </Flex>
   );
 };
