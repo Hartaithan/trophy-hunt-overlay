@@ -1,5 +1,6 @@
 import type { FirebaseOptions } from "firebase/app";
 import { initializeApp, getApps } from "firebase/app";
+import type { User } from "firebase/auth";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
@@ -19,3 +20,7 @@ export const app = apps.length === 0 ? initializeApp(firebaseConfig) : apps[0];
 
 export const auth = getAuth(app);
 export const database = getFirestore(app);
+
+export const dataWithUser = (data: Object, user: User): Object => {
+  return { ...data, user_id: user.uid };
+};

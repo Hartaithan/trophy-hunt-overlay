@@ -1,11 +1,15 @@
 import type { ActionResponse } from "@/models/action";
 import type { FetchGameResponse } from "@/models/game";
 import type { SearchResult } from "@/models/search";
-import { database } from "@/utils/firebase";
+import { dataWithUser, database } from "@/utils/firebase";
 import { fetchGame } from "@/utils/game";
 import { collection, doc, setDoc } from "firebase/firestore";
+import type { User } from "firebase/auth";
 
-export const addGame = async (item: SearchResult): Promise<ActionResponse> => {
+export const addGame = async (
+  item: SearchResult,
+  user: User,
+): Promise<ActionResponse> => {
   const { url, name } = item;
   try {
     let game: FetchGameResponse | null = await fetchGame(url);
@@ -16,8 +20,9 @@ export const addGame = async (item: SearchResult): Promise<ActionResponse> => {
         message: `Unable to add ${name}`,
       };
     }
-    const gamesRef = collection(database, "games");
-    await setDoc(doc(gamesRef), game);
+    const ref = collection(database, "games");
+    const data = dataWithUser(game, user);
+    await setDoc(doc(ref), data);
     return {
       status: "success",
       message: `${name} successfully added!`,
