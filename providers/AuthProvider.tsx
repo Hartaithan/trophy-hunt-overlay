@@ -9,11 +9,13 @@ import { LoadingOverlay } from "@mantine/core";
 
 interface Context {
   user: User | null;
+  isAuth: boolean;
   isLoading: boolean;
 }
 
 const initialValue: Context = {
   user: null,
+  isAuth: false,
   isLoading: true,
 };
 
@@ -39,7 +41,7 @@ export const AuthProvider: FC<PropsWithChildren> = (props) => {
   }, []);
 
   const exposed: Context = useMemo(() => {
-    return { user, isLoading };
+    return { user, isAuth: !!user, isLoading };
   }, [user, isLoading]);
 
   return (

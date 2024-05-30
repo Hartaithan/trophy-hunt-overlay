@@ -9,6 +9,7 @@ import { IconAlertOctagon, IconCheck, IconPlus } from "@tabler/icons-react";
 import { addGame } from "@/actions/addGame";
 import { notifications } from "@mantine/notifications";
 import { useAuth } from "@/providers/AuthProvider";
+import { isAuthenticated } from "@/utils/auth";
 
 interface Props {
   item: SearchResult;
@@ -21,7 +22,7 @@ const ResultItem: FC<Props> = (props) => {
   const handleAdd = useCallback(
     async (item: SearchResult) => {
       const { name } = item;
-      if (!user) return null;
+      if (!isAuthenticated(user)) return null;
       const id = notifications.show({
         loading: true,
         title: `Adding ${name}...`,
