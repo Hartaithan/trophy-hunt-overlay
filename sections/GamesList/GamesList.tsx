@@ -5,17 +5,20 @@ import { useAuth } from "@/providers/AuthProvider";
 import { isAuthenticated } from "@/utils/auth";
 import { database } from "@/utils/firebase";
 import { collection, getDocs, query, where } from "firebase/firestore";
-import { useCallback, useEffect, useState, type FC } from "react";
+import { useCallback, useEffect, useRef, useState, type FC } from "react";
 
 const GamesList: FC = () => {
   const { user } = useAuth();
   const [games, setGames] = useState<FetchGameResponse[]>([]);
+  const isFetched = useRef<boolean>(false);
 
   const fetchGames = useCallback(async () => {
-    if (!isAuthenticated(user)) return null;
+    if (!isAuthenticated(user)) return;
+    if (isFetched.current) return;
     const gamesRef = collection(database, "games");
     const gamesQuery = query(gamesRef, where("user_id", "==", user.uid));
     const gamesRes = await getDocs(gamesQuery);
+    isFetched.current = true;
     const gamesData: FetchGameResponse[] = gamesRes.docs.map((doc) => ({
       id: doc.id,
       ...(doc.data() as Omit<FetchGameResponse, "id">),
