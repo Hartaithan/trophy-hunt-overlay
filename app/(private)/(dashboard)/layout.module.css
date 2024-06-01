@@ -3,3 +3,7 @@
   padding-left: var(--mantine-spacing-md);
   padding-right: var(--mantine-spacing-md);
 }
+
+.main {
+  height: 100%;
+}
