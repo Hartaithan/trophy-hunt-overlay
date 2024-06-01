@@ -1,11 +1,11 @@
 import type { FC } from "react";
 import PageContainer from "@/components/PageContainer/PageContainer";
-import GamesList from "@/sections/GamesList/GamesList";
+import GamesSection from "@/sections/GamesSection/GamesSection";
 
 const GamesPage: FC = () => {
   return (
     <PageContainer>
-      <GamesList />
+      <GamesSection />
     </PageContainer>
   );
 };

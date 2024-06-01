@@ -1,14 +1,17 @@
 "use client";
 
+import GamesControl from "@/components/GamesControl/GamesControl";
 import type { FetchGameResponse } from "@/models/game";
 import { useAuth } from "@/providers/AuthProvider";
 import { isAuthenticated } from "@/utils/auth";
 import { database } from "@/utils/firebase";
+import { Flex, Loader } from "@mantine/core";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { useCallback, useEffect, useRef, useState, type FC } from "react";
 
-const GamesList: FC = () => {
+const GamesSection: FC = () => {
   const { user } = useAuth();
+  const [isLoading, setLoading] = useState<boolean>(true);
   const [games, setGames] = useState<FetchGameResponse[]>([]);
   const isFetched = useRef<boolean>(false);
 
@@ -24,17 +27,22 @@ const GamesList: FC = () => {
       ...(doc.data() as Omit<FetchGameResponse, "id">),
     }));
     setGames(gamesData);
+    setLoading(false);
   }, [user]);
 
   useEffect(() => {
     fetchGames();
   }, [fetchGames]);
 
-  return (
-    <pre style={{ whiteSpace: "pre-wrap", fontSize: 12 }}>
-      {JSON.stringify(games, null, 2)}
-    </pre>
-  );
+  if (isLoading) {
+    return (
+      <Flex h="100%" justify="center" align="center">
+        <Loader />
+      </Flex>
+    );
+  }
+
+  return <GamesControl games={games} />;
 };
 
-export default GamesList;
+export default GamesSection;
