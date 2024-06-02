@@ -1,0 +1,14 @@
+.container {
+  flex: 1;
+  overflow: auto;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--mantine-radius-md);
+  border: 1px solid var(--mantine-color-default-border);
+  padding: var(--mantine-spacing-md);
+}
+
+.grid {
+  height: 100%;
+  width: 100%;
+}
