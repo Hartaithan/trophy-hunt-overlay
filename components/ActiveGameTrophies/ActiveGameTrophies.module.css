@@ -1,0 +1,8 @@
+.container {
+  flex: 1;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--mantine-radius-md);
+  border: 1px solid var(--mantine-color-default-border);
+}
