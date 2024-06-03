@@ -1,4 +1,9 @@
-import type { Dispatch, FC, SetStateAction } from "react";
+import {
+  useCallback,
+  type Dispatch,
+  type FC,
+  type SetStateAction,
+} from "react";
 import type { FetchGameResponse } from "@/models/game";
 import { Flex, Grid, GridCol, Text } from "@mantine/core";
 import GameListItem from "@/components/GameListItem/GameListItem";
@@ -10,7 +15,15 @@ interface Props {
 }
 
 const GameList: FC<Props> = (props) => {
-  const { games } = props;
+  const { games, setGame } = props;
+
+  const handleAddItem = useCallback(
+    (game: FetchGameResponse) => {
+      setGame(game);
+    },
+    [setGame],
+  );
+
   return (
     <Flex className={classes.container}>
       {games.length === 0 && (
@@ -22,7 +35,11 @@ const GameList: FC<Props> = (props) => {
         <Grid className={classes.grid}>
           {games.map((item, idx) => (
             <GridCol span={3} key={idx}>
-              <GameListItem key={idx} game={item} />
+              <GameListItem
+                key={idx}
+                game={item}
+                onClick={() => handleAddItem(item)}
+              />
             </GridCol>
           ))}
         </Grid>

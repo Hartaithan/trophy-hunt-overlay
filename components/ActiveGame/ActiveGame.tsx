@@ -9,11 +9,7 @@ interface Props {
 
 const ActiveGame: FC<Props> = (props) => {
   const { game } = props;
-  return (
-    <Flex className={classes.container}>
-      active game: {JSON.stringify(game, null, 2)}
-    </Flex>
-  );
+  return <Flex className={classes.container}>active game: {game?.title}</Flex>;
 };
 
 export default ActiveGame;

@@ -14,8 +14,9 @@ const ActiveGameTrophies: FC<Props> = (props) => {
   const { game, trophy } = props;
   return (
     <Flex className={classes.container}>
-      active game: {JSON.stringify(game, null, 2)}
-      active trophy: {JSON.stringify(trophy, null, 2)}
+      active game: {game?.title}
+      <br />
+      active trophy: {trophy?.name}
     </Flex>
   );
 };
