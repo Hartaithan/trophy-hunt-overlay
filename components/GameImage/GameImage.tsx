@@ -1,28 +1,30 @@
 import Image from "next/image";
+import type { ImageProps } from "next/image";
 import type { FC } from "react";
-import type { SearchResult } from "@/models/search";
-import classes from "./ResultImage.module.css";
+import classes from "./GameImage.module.css";
+import type { BoxProps } from "@mantine/core";
 import { Box, Overlay } from "@mantine/core";
 import clsx from "clsx";
 
-interface Props {
-  className?: string;
-  item: SearchResult;
+interface Props extends BoxProps {
+  src: string | undefined | null;
+  name: string;
+  isOverlay: boolean;
+  imageProps?: Omit<ImageProps, "src" | "alt">;
 }
 
-const ResultImage: FC<Props> = (props) => {
-  const { className, item } = props;
-  if (!item.image_url) return null;
-  const isOverlay = item.platforms && item.platforms.includes("PS5");
+const GameImage: FC<Props> = (props) => {
+  const { className, src, name, isOverlay, imageProps } = props;
+  const sizeProps = !imageProps ? { height: 56, width: 100 } : imageProps;
+  if (!src) return null;
   return (
     <Box className={clsx(classes.wrapper, className)}>
       <Image
         className={classes.image}
-        src={item.image_url}
-        alt={`${item.name} card`}
-        height={56}
-        width={100}
+        src={src}
+        alt={`${name} image preview`}
         unoptimized
+        {...sizeProps}
       />
       {isOverlay && (
         <>
@@ -32,10 +34,10 @@ const ResultImage: FC<Props> = (props) => {
           />
           <Image
             className={classes.background}
-            src={item.image_url}
+            src={src}
             fill
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            alt={`${item.name} card background`}
+            alt={`${name} image preview background`}
             unoptimized
           />
         </>
@@ -44,4 +46,4 @@ const ResultImage: FC<Props> = (props) => {
   );
 };
 
-export default ResultImage;
+export default GameImage;

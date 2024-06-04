@@ -4,7 +4,7 @@ import type { SearchResult } from "@/models/search";
 import { Badge, Button, Flex, Text, Tooltip } from "@mantine/core";
 import { useCallback, type FC } from "react";
 import classes from "./ResultItem.module.css";
-import ResultImage from "@/components/ResultImage/ResultImage";
+import GameImage from "@/components/GameImage/GameImage";
 import { IconAlertOctagon, IconCheck, IconPlus } from "@tabler/icons-react";
 import { addGame } from "@/actions/addGame";
 import { notifications } from "@mantine/notifications";
@@ -18,6 +18,7 @@ interface Props {
 const ResultItem: FC<Props> = (props) => {
   const { item } = props;
   const { user } = useAuth();
+  const isOverlay = item.platforms ? item?.platforms.includes("PS5") : false;
 
   const handleAdd = useCallback(
     async (item: SearchResult) => {
@@ -59,7 +60,11 @@ const ResultItem: FC<Props> = (props) => {
   return (
     <Flex className={classes.container}>
       <Flex className={classes.hero}>
-        <ResultImage item={item} />
+        <GameImage
+          src={item.image_url}
+          name={item.name}
+          isOverlay={isOverlay}
+        />
         <Text className={classes.name} lineClamp={3}>
           {item.name}
         </Text>
