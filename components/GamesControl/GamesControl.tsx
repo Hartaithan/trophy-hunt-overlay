@@ -15,16 +15,24 @@ interface Props {
 
 const GamesControl: FC<Props> = (props) => {
   const { games } = props;
-  const [game, setGame] = useState<FetchGameResponse | null>(null);
-  const [trophy, setTrophy] = useState<Trophy | null>(null);
+  const [activeGame, setActiveGame] = useState<FetchGameResponse | null>(null);
+  const [activeTrophy, setActiveTrophy] = useState<Trophy | null>(null);
 
   return (
     <Stack className={classes.container}>
       <Group className={classes.header}>
-        <ActiveGame game={game} />
-        <ActiveGameTrophies game={game} trophy={trophy} setTrophy={setTrophy} />
+        <ActiveGame activeGame={activeGame} />
+        <ActiveGameTrophies
+          activeGame={activeGame}
+          activeTrophy={activeTrophy}
+          setActiveTrophy={setActiveTrophy}
+        />
       </Group>
-      <GameList games={games} setGame={setGame} />
+      <GameList
+        activeGame={activeGame}
+        games={games}
+        setActiveGame={setActiveGame}
+      />
     </Stack>
   );
 };

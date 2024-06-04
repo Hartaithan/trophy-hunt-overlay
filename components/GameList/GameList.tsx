@@ -10,18 +10,23 @@ import GameListItem from "@/components/GameListItem/GameListItem";
 import classes from "./GameList.module.css";
 
 interface Props {
+  activeGame: FetchGameResponse | null;
   games: FetchGameResponse[];
-  setGame: Dispatch<SetStateAction<FetchGameResponse | null>>;
+  setActiveGame: Dispatch<SetStateAction<FetchGameResponse | null>>;
 }
 
 const GameList: FC<Props> = (props) => {
-  const { games, setGame } = props;
+  const { activeGame, games, setActiveGame } = props;
 
   const handleAddItem = useCallback(
     (game: FetchGameResponse) => {
-      setGame(game);
+      setActiveGame((prev) => {
+        if (prev?.title !== game.title) return game;
+        if (prev) return null;
+        return game;
+      });
     },
-    [setGame],
+    [setActiveGame],
   );
 
   return (
@@ -37,8 +42,9 @@ const GameList: FC<Props> = (props) => {
             <GridCol span={3} key={idx}>
               <GameListItem
                 key={idx}
+                activeGame={activeGame}
                 game={item}
-                onClick={() => handleAddItem(item)}
+                onGameChange={() => handleAddItem(item)}
               />
             </GridCol>
           ))}

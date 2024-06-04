@@ -1,19 +1,26 @@
+"use client";
+
 import type { FC } from "react";
 import type { FetchGameResponse } from "@/models/game";
-import { UnstyledButton } from "@mantine/core";
+import { Checkbox, CheckboxCard, Text } from "@mantine/core";
 import classes from "./GameListItem.module.css";
 
 interface Props {
+  activeGame: FetchGameResponse | null;
   game: FetchGameResponse;
-  onClick: () => void;
+  onGameChange: () => void;
 }
 
 const GameListItem: FC<Props> = (props) => {
-  const { game, onClick } = props;
+  const { activeGame, game, onGameChange } = props;
   return (
-    <UnstyledButton className={classes.container} onClick={onClick}>
-      {game.title}
-    </UnstyledButton>
+    <CheckboxCard
+      className={classes.container}
+      checked={activeGame?.title === game.title}
+      onClick={onGameChange}>
+      <Text>{game.title}</Text>
+      <Checkbox.Indicator ml="auto" />
+    </CheckboxCard>
   );
 };
 

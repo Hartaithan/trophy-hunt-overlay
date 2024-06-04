@@ -5,18 +5,18 @@ import type { FetchGameResponse } from "@/models/game";
 import type { Trophy } from "@/models/trophy";
 
 interface Props {
-  game: FetchGameResponse | null;
-  trophy: Trophy | null;
-  setTrophy: Dispatch<SetStateAction<Trophy | null>>;
+  activeGame: FetchGameResponse | null;
+  activeTrophy: Trophy | null;
+  setActiveTrophy: Dispatch<SetStateAction<Trophy | null>>;
 }
 
 const ActiveGameTrophies: FC<Props> = (props) => {
-  const { game, trophy } = props;
+  const { activeGame, activeTrophy } = props;
   return (
     <Flex className={classes.container}>
-      active game: {game?.title}
+      active game: {activeGame?.title}
       <br />
-      active trophy: {trophy?.name}
+      active trophy: {activeTrophy?.name}
     </Flex>
   );
 };
