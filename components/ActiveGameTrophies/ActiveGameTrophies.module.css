@@ -1,8 +1,19 @@
 .container {
   flex: 1;
   height: 100%;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
+  padding: var(--mantine-spacing-md);
   border-radius: var(--mantine-radius-md);
   border: 1px solid var(--mantine-color-default-border);
+  overflow: auto;
+}
+
+.heading {
+  font-size: var(--mantine-font-size-lg);
+  font-weight: 500;
+  margin-bottom: var(--mantine-spacing-sm);
+}
+
+.list {
+  flex-direction: column;
 }
