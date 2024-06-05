@@ -1,8 +1,18 @@
 .container {
   height: 100%;
   width: 300px;
-  align-items: center;
-  justify-content: center;
+  padding: var(--mantine-spacing-md);
   border-radius: var(--mantine-radius-md);
   border: 1px solid var(--mantine-color-default-border);
+  flex-direction: column;
+}
+
+div.image {
+  height: 100px;
+  margin-bottom: var(--mantine-spacing-md);
+}
+
+.title {
+  font-size: var(--mantine-font-size-md);
+  font-weight: 600;
 }
