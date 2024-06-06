@@ -1,4 +1,9 @@
-import type { Dispatch, FC, SetStateAction } from "react";
+import {
+  useCallback,
+  type Dispatch,
+  type FC,
+  type SetStateAction,
+} from "react";
 import { Flex, Grid, GridCol, Stack, Text } from "@mantine/core";
 import classes from "./ActiveGameTrophies.module.css";
 import type { FetchGameResponse } from "@/models/game";
@@ -13,6 +18,18 @@ interface Props {
 
 const ActiveGameTrophies: FC<Props> = (props) => {
   const { activeGame, activeTrophy, setActiveTrophy } = props;
+
+  const handleActiveTrophyChange = useCallback(
+    (trophy: Trophy) => {
+      setActiveTrophy((prev) => {
+        if (prev?.url !== trophy.url) return trophy;
+        if (prev) return null;
+        return trophy;
+      });
+    },
+    [setActiveTrophy],
+  );
+
   return (
     <Stack className={classes.container}>
       {activeGame?.lists.map((list) => (
@@ -24,7 +41,7 @@ const ActiveGameTrophies: FC<Props> = (props) => {
                 <ActiveGameTrophy
                   trophy={trophy}
                   activeTrophy={activeTrophy}
-                  setActiveTrophy={setActiveTrophy}
+                  onTrophyChange={() => handleActiveTrophyChange(trophy)}
                 />
               </GridCol>
             ))}

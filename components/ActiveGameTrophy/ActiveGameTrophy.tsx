@@ -1,15 +1,25 @@
-import type { Dispatch, FC, SetStateAction } from "react";
+import type { FC } from "react";
 import type { Trophy } from "@/models/trophy";
+import { Checkbox, CheckboxCard, Text } from "@mantine/core";
+import classes from "./ActiveGameTrophy.module.css";
 
 interface Props {
   trophy: Trophy;
   activeTrophy: Trophy | null;
-  setActiveTrophy: Dispatch<SetStateAction<Trophy | null>>;
+  onTrophyChange: () => void;
 }
 
 const ActiveGameTrophy: FC<Props> = (props) => {
-  const { trophy } = props;
-  return <div>{trophy.name}</div>;
+  const { trophy, activeTrophy, onTrophyChange } = props;
+  return (
+    <CheckboxCard
+      className={classes.container}
+      checked={trophy.url === activeTrophy?.url}
+      onClick={onTrophyChange}>
+      <Text>{trophy.name}</Text>
+      <Checkbox.Indicator ml="auto" />
+    </CheckboxCard>
+  );
 };
 
 export default ActiveGameTrophy;
