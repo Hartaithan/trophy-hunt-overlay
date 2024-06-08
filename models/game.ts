@@ -1,6 +1,7 @@
 import type { TrophyCounts, TrophyList } from "./trophy";
 
 export interface GameSearchResult {
+  id: string;
   path: string;
   name: string;
   platforms?: string[];
@@ -17,13 +18,14 @@ export interface GameSearchResponse {
 }
 
 export interface Game {
+  id: string;
+  url: string;
   title: string;
   platforms: string[];
   thumbnail: string | null;
   cover: string | null;
   lists: TrophyList[];
   counts: TrophyCounts;
-  page: string;
   guide: string | null;
   message?: string;
 }

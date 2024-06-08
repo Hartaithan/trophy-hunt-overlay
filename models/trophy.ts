@@ -1,4 +1,5 @@
 export interface Trophy {
+  id: string;
   name: string;
   description: string;
   type: string;
@@ -6,6 +7,7 @@ export interface Trophy {
 }
 
 export interface TrophyList {
+  id: string;
   name: string;
   count: number;
   trophies: Trophy[];

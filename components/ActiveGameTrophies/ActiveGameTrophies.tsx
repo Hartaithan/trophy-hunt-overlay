@@ -22,7 +22,7 @@ const ActiveGameTrophies: FC<Props> = (props) => {
   const handleActiveTrophyChange = useCallback(
     (trophy: Trophy) => {
       setActiveTrophy((prev) => {
-        if (prev?.url !== trophy.url) return trophy;
+        if (prev?.id !== trophy.id) return trophy;
         if (prev) return null;
         return trophy;
       });
@@ -33,11 +33,11 @@ const ActiveGameTrophies: FC<Props> = (props) => {
   return (
     <Stack className={classes.container}>
       {activeGame?.lists.map((list) => (
-        <Flex key={list.name} className={classes.list}>
+        <Flex key={list.id} className={classes.list}>
           <Text className={classes.heading}>{list.name}</Text>
           <Grid className={classes.container}>
             {list.trophies.map((trophy) => (
-              <GridCol span={3} key={trophy.url}>
+              <GridCol span={3} key={trophy.id}>
                 <ActiveGameTrophy
                   trophy={trophy}
                   activeTrophy={activeTrophy}

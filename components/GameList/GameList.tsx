@@ -21,7 +21,7 @@ const GameList: FC<Props> = (props) => {
   const handleAddItem = useCallback(
     (game: Game) => {
       setActiveGame((prev) => {
-        if (prev?.title !== game.title) return game;
+        if (prev?.id !== game?.id) return game;
         if (prev) return null;
         return game;
       });
@@ -38,10 +38,9 @@ const GameList: FC<Props> = (props) => {
       )}
       {games.length > 0 && (
         <Grid className={classes.grid}>
-          {games.map((item, idx) => (
-            <GridCol span={3} key={idx}>
+          {games.map((item) => (
+            <GridCol span={3} key={item.id}>
               <GameListItem
-                key={idx}
                 activeGame={activeGame}
                 game={item}
                 onGameChange={() => handleAddItem(item)}

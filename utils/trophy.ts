@@ -12,7 +12,7 @@ export const getTrophyList = (
   rows: Cheerio<Element>,
 ): Trophy[] => {
   const trophies: Trophy[] = [];
-  rows.each((_, row) => {
+  rows.each((index, row) => {
     const content = cheerio(row).find(select.trophyContent).first();
     const type =
       cheerio(row).find(select.trophyType).attr("title") || "Type not found";
@@ -20,8 +20,10 @@ export const getTrophyList = (
     const name = nameElement.text().trim();
     const description = content.contents().last().text().trim();
     const url = nameElement.attr("href") ?? null;
+    let id = `${index}-${name.toLowerCase().replaceAll(" ", "-")}`;
+    if (url) id = url.split("/").pop() ?? id;
     if (name.length !== 0 && description.length !== 0) {
-      trophies.push({ name, description, type, url: SERVICE_URL + url });
+      trophies.push({ id, name, description, type, url: SERVICE_URL + url });
     }
   });
   return trophies;

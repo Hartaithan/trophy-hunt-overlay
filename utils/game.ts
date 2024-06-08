@@ -28,6 +28,7 @@ export const fetchGame = async (
   const urlWithParams = new URL(url);
   urlWithParams.searchParams.set("lang", lang);
   const urlFormatted = urlWithParams.toString();
+  const id = url.split("/").pop() ?? url;
 
   const page = await fetchPage(urlFormatted);
 
@@ -64,7 +65,7 @@ export const fetchGame = async (
   let base = 0;
   let total = 0;
 
-  listsEl.each((_, list) => {
+  listsEl.each((index, list) => {
     const haveDLC = listsEl.length > 1;
     const nameRow = cheerio(list).find(select.nameRow);
     const name = haveDLC
@@ -77,8 +78,9 @@ export const fetchGame = async (
 
     if (name === baseTitle) base = base + trophies.length;
     total = total + trophies.length;
+    const id = `${index}-${name.toLowerCase().replaceAll(" ", "-")}`;
 
-    lists.push({ name, count, trophies });
+    lists.push({ id, name, count, trophies });
   });
 
   const guideElement = cheerio(select.guide);
@@ -86,13 +88,14 @@ export const fetchGame = async (
     guideElement.length > 0 ? SERVICE_URL + guideElement.attr("href") : null;
 
   const response: Game = {
+    id,
     title,
     platforms,
     thumbnail,
     cover,
     lists,
     counts: { base, total },
-    page: urlFormatted,
+    url: urlFormatted,
     guide,
   };
 
