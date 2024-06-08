@@ -1,11 +1,11 @@
 import type { FC } from "react";
 import { memo } from "react";
-import type { SearchResult } from "@/models/search";
+import type { GameSearchResult } from "@/models/game";
 import { Grid, GridCol, Text } from "@mantine/core";
-import ResultItem from "@/components/ResultItem/ResultItem";
+import SearchResultItem from "@/components/SearchResultItem/SearchResultItem";
 
 interface Props {
-  results: SearchResult[] | null;
+  results: GameSearchResult[] | null;
 }
 
 const SearchResults: FC<Props> = (props) => {
@@ -23,7 +23,7 @@ const SearchResults: FC<Props> = (props) => {
         results.length > 0 &&
         results.map((result) => (
           <GridCol span={3} key={result.path}>
-            <ResultItem item={result} />
+            <SearchResultItem item={result} />
           </GridCol>
         ))}
     </Grid>

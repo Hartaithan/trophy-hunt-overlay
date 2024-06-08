@@ -4,22 +4,22 @@ import {
   type FC,
   type SetStateAction,
 } from "react";
-import type { FetchGameResponse } from "@/models/game";
+import type { Game } from "@/models/game";
 import { Flex, Grid, GridCol, Text } from "@mantine/core";
 import GameListItem from "@/components/GameListItem/GameListItem";
 import classes from "./GameList.module.css";
 
 interface Props {
-  activeGame: FetchGameResponse | null;
-  games: FetchGameResponse[];
-  setActiveGame: Dispatch<SetStateAction<FetchGameResponse | null>>;
+  activeGame: Game | null;
+  games: Game[];
+  setActiveGame: Dispatch<SetStateAction<Game | null>>;
 }
 
 const GameList: FC<Props> = (props) => {
   const { activeGame, games, setActiveGame } = props;
 
   const handleAddItem = useCallback(
-    (game: FetchGameResponse) => {
+    (game: Game) => {
       setActiveGame((prev) => {
         if (prev?.title !== game.title) return game;
         if (prev) return null;

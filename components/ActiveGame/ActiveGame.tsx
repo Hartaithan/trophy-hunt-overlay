@@ -1,11 +1,11 @@
 import { Flex, Text } from "@mantine/core";
 import type { FC } from "react";
 import classes from "./ActiveGame.module.css";
-import type { FetchGameResponse } from "@/models/game";
+import type { Game } from "@/models/game";
 import GameImage from "@/components/GameImage/GameImage";
 
 interface Props {
-  activeGame: FetchGameResponse | null;
+  activeGame: Game | null;
 }
 
 const ActiveGame: FC<Props> = (props) => {

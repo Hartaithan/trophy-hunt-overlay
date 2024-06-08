@@ -1,7 +1,7 @@
 "use client";
 
 import GamesControl from "@/components/GamesControl/GamesControl";
-import type { FetchGameResponse } from "@/models/game";
+import type { Game } from "@/models/game";
 import { useAuth } from "@/providers/AuthProvider";
 import { isAuthenticated } from "@/utils/auth";
 import { database } from "@/utils/firebase";
@@ -12,7 +12,7 @@ import { useCallback, useEffect, useRef, useState, type FC } from "react";
 const GamesSection: FC = () => {
   const { user } = useAuth();
   const [isLoading, setLoading] = useState<boolean>(true);
-  const [games, setGames] = useState<FetchGameResponse[]>([]);
+  const [games, setGames] = useState<Game[]>([]);
   const isFetched = useRef<boolean>(false);
 
   const fetchGames = useCallback(async () => {
@@ -22,9 +22,9 @@ const GamesSection: FC = () => {
     const gamesQuery = query(gamesRef, where("user_id", "==", user.uid));
     const gamesRes = await getDocs(gamesQuery);
     isFetched.current = true;
-    const gamesData: FetchGameResponse[] = gamesRes.docs.map((doc) => ({
+    const gamesData: Game[] = gamesRes.docs.map((doc) => ({
       id: doc.id,
-      ...(doc.data() as Omit<FetchGameResponse, "id">),
+      ...(doc.data() as Omit<Game, "id">),
     }));
     setGames(gamesData);
     setLoading(false);

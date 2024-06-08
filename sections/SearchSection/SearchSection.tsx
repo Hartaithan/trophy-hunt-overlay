@@ -4,7 +4,7 @@ import { useState, type FC, useEffect, useCallback, useRef } from "react";
 import { Button, Flex } from "@mantine/core";
 import SearchForm from "@/forms/SearchForm/SearchForm";
 import SearchResults from "@/components/SearchResults/SearchResults";
-import type { SearchResult } from "@/models/search";
+import type { GameSearchResult } from "@/models/game";
 import { useDebouncedValue } from "@mantine/hooks";
 import { searchByQuery } from "@/actions/search";
 import { notifications } from "@mantine/notifications";
@@ -14,7 +14,7 @@ const SearchSection: FC = () => {
   const [search, setSearch] = useState<string>("");
   const searchValue = useRef<string>("");
   const [debounced] = useDebouncedValue(search, 1500);
-  const [results, setResults] = useState<SearchResult[] | null>(null);
+  const [results, setResults] = useState<GameSearchResult[] | null>(null);
   const [nextPage, setNextPage] = useState<number | null>(null);
   const [isLoading, setLoading] = useState<boolean>(false);
   const [isFetching, setFetching] = useState<boolean>(false);

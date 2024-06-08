@@ -6,12 +6,12 @@ import {
 } from "react";
 import { Flex, Grid, GridCol, Stack, Text } from "@mantine/core";
 import classes from "./ActiveGameTrophies.module.css";
-import type { FetchGameResponse } from "@/models/game";
+import type { Game } from "@/models/game";
 import type { Trophy } from "@/models/trophy";
 import ActiveGameTrophy from "@/components/ActiveGameTrophy/ActiveGameTrophy";
 
 interface Props {
-  activeGame: FetchGameResponse | null;
+  activeGame: Game | null;
   activeTrophy: Trophy | null;
   setActiveTrophy: Dispatch<SetStateAction<Trophy | null>>;
 }

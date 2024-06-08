@@ -6,7 +6,7 @@ import { getTrophyList } from "./trophy";
 import { baseTitle } from "@/constants/trophy";
 import type { TrophyList } from "@/models/trophy";
 import { SERVICE_URL } from "@/constants/variables";
-import type { FetchGameResponse } from "@/models/game";
+import type { Game } from "@/models/game";
 
 const select = {
   list: "#content > div.row > div.col-xs > div.box.no-top-border",
@@ -24,7 +24,7 @@ const select = {
 export const fetchGame = async (
   url: string,
   lang = "en",
-): Promise<FetchGameResponse | null> => {
+): Promise<Game | null> => {
   const urlWithParams = new URL(url);
   urlWithParams.searchParams.set("lang", lang);
   const urlFormatted = urlWithParams.toString();
@@ -85,7 +85,7 @@ export const fetchGame = async (
   const guide =
     guideElement.length > 0 ? SERVICE_URL + guideElement.attr("href") : null;
 
-  const response: FetchGameResponse = {
+  const response: Game = {
     title,
     platforms,
     thumbnail,

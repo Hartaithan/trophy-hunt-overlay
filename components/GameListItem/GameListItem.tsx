@@ -1,13 +1,13 @@
 "use client";
 
 import type { FC } from "react";
-import type { FetchGameResponse } from "@/models/game";
+import type { Game } from "@/models/game";
 import { Checkbox, CheckboxCard, Text } from "@mantine/core";
 import classes from "./GameListItem.module.css";
 
 interface Props {
-  activeGame: FetchGameResponse | null;
-  game: FetchGameResponse;
+  activeGame: Game | null;
+  game: Game;
   onGameChange: () => void;
 }
 

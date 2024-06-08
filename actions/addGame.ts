@@ -1,18 +1,18 @@
 import type { ActionResponse } from "@/models/action";
-import type { FetchGameResponse } from "@/models/game";
-import type { SearchResult } from "@/models/search";
+import type { Game } from "@/models/game";
+import type { GameSearchResult } from "@/models/game";
 import { dataWithUser, database } from "@/utils/firebase";
 import { fetchGame } from "@/utils/game";
 import { collection, doc, setDoc } from "firebase/firestore";
 import type { User } from "firebase/auth";
 
 export const addGame = async (
-  item: SearchResult,
+  item: GameSearchResult,
   user: User,
 ): Promise<ActionResponse> => {
   const { url, name } = item;
   try {
-    let game: FetchGameResponse | null = await fetchGame(url);
+    let game: Game | null = await fetchGame(url);
     if (!game) {
       console.error("unable to fetch game");
       return {

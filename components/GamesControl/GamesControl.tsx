@@ -3,19 +3,19 @@
 import { useState, type FC } from "react";
 import { Group, Stack } from "@mantine/core";
 import type { Trophy } from "@/models/trophy";
-import type { FetchGameResponse } from "@/models/game";
+import type { Game } from "@/models/game";
 import classes from "./GamesControl.module.css";
 import ActiveGame from "@/components/ActiveGame/ActiveGame";
 import ActiveGameTrophies from "@/components/ActiveGameTrophies/ActiveGameTrophies";
 import GameList from "@/components/GameList/GameList";
 
 interface Props {
-  games: FetchGameResponse[];
+  games: Game[];
 }
 
 const GamesControl: FC<Props> = (props) => {
   const { games } = props;
-  const [activeGame, setActiveGame] = useState<FetchGameResponse | null>(null);
+  const [activeGame, setActiveGame] = useState<Game | null>(null);
   const [activeTrophy, setActiveTrophy] = useState<Trophy | null>(null);
 
   return (

@@ -2,7 +2,7 @@
 
 import { SERVICE_URL } from "@/constants/variables";
 import type { ActionResponse } from "@/models/action";
-import type { SearchResponse, SearchResult } from "@/models/search";
+import type { GameSearchResponse, GameSearchResult } from "@/models/game";
 import { fetchPage } from "@/utils/page";
 import { load } from "cheerio";
 
@@ -19,7 +19,7 @@ const select = {
 export const searchByQuery = async (
   query: string,
   page: number | null = null,
-): Promise<ActionResponse<SearchResponse>> => {
+): Promise<ActionResponse<GameSearchResponse>> => {
   const url = new URL(`${SERVICE_URL}/search`);
   url.searchParams.set("q", encodeURI(query));
   url.searchParams.set("page", page ? page.toString() : "1");
@@ -35,7 +35,7 @@ export const searchByQuery = async (
 
   const cheerio = load(content.body);
 
-  const results: SearchResult[] = [];
+  const results: GameSearchResult[] = [];
   const resultQuery = cheerio(select.query).text().split("›").pop();
   const rows = cheerio(select.rows);
 
@@ -80,7 +80,12 @@ export const searchByQuery = async (
     nextPage = page ? Number(page) : null;
   }
 
-  const response: SearchResponse = { query, resultQuery, results, nextPage };
+  const response: GameSearchResponse = {
+    query,
+    resultQuery,
+    results,
+    nextPage,
+  };
 
   return {
     data: response,

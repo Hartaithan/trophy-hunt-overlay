@@ -1,9 +1,9 @@
 "use client";
 
-import type { SearchResult } from "@/models/search";
+import type { GameSearchResult } from "@/models/game";
 import { Badge, Button, Flex, Text, Tooltip } from "@mantine/core";
 import { useCallback, type FC } from "react";
-import classes from "./ResultItem.module.css";
+import classes from "./SearchResultItem.module.css";
 import GameImage from "@/components/GameImage/GameImage";
 import { IconAlertOctagon, IconCheck, IconPlus } from "@tabler/icons-react";
 import { addGame } from "@/actions/addGame";
@@ -12,16 +12,16 @@ import { useAuth } from "@/providers/AuthProvider";
 import { isAuthenticated } from "@/utils/auth";
 
 interface Props {
-  item: SearchResult;
+  item: GameSearchResult;
 }
 
-const ResultItem: FC<Props> = (props) => {
+const SearchResultItem: FC<Props> = (props) => {
   const { item } = props;
   const { user } = useAuth();
   const isOverlay = item.platforms ? item?.platforms.includes("PS5") : false;
 
   const handleAdd = useCallback(
-    async (item: SearchResult) => {
+    async (item: GameSearchResult) => {
       const { name } = item;
       if (!isAuthenticated(user)) return null;
       const id = notifications.show({
@@ -95,4 +95,4 @@ const ResultItem: FC<Props> = (props) => {
   );
 };
 
-export default ResultItem;
+export default SearchResultItem;
