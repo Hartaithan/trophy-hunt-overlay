@@ -4,7 +4,7 @@ import GamesControl from "@/components/GamesControl/GamesControl";
 import type { Game } from "@/models/game";
 import { useAuth } from "@/providers/AuthProvider";
 import { isAuthenticated } from "@/utils/auth";
-import { database } from "@/utils/firebase";
+import { store } from "@/utils/firebase";
 import { Flex, Loader } from "@mantine/core";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { useCallback, useEffect, useRef, useState, type FC } from "react";
@@ -18,7 +18,7 @@ const GamesSection: FC = () => {
   const fetchGames = useCallback(async () => {
     if (!isAuthenticated(user)) return;
     if (isFetched.current) return;
-    const gamesRef = collection(database, "games");
+    const gamesRef = collection(store, "games");
     const gamesQuery = query(gamesRef, where("user_id", "==", user.uid));
     const gamesRes = await getDocs(gamesQuery);
     isFetched.current = true;

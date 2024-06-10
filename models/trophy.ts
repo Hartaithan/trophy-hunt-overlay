@@ -17,3 +17,5 @@ export interface TrophyCounts {
   base: number;
   total: number;
 }
+
+export type ActiveTrophy = Pick<Trophy, "id" | "name">;

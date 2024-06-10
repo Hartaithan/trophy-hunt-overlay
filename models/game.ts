@@ -29,3 +29,5 @@ export interface Game {
   guide: string | null;
   message?: string;
 }
+
+export type ActiveGame = Pick<Game, "id" | "title" | "thumbnail">;

@@ -21,7 +21,7 @@ const GamesControl: FC<Props> = (props) => {
   return (
     <Stack className={classes.container}>
       <Group className={classes.header}>
-        <ActiveGame activeGame={activeGame} />
+        <ActiveGame activeGame={activeGame} activeTrophy={activeTrophy} />
         <ActiveGameTrophies
           activeGame={activeGame}
           activeTrophy={activeTrophy}

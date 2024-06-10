@@ -1,7 +1,7 @@
 import type { ActionResponse } from "@/models/action";
 import type { Game } from "@/models/game";
 import type { GameSearchResult } from "@/models/game";
-import { dataWithUser, database } from "@/utils/firebase";
+import { dataWithUser, store } from "@/utils/firebase";
 import { fetchGame } from "@/utils/game";
 import { collection, doc, setDoc } from "firebase/firestore";
 import type { User } from "firebase/auth";
@@ -20,7 +20,7 @@ export const addGame = async (
         message: `Unable to add ${name}`,
       };
     }
-    const ref = collection(database, "games");
+    const ref = collection(store, "games");
     const data = dataWithUser(game, user);
     await setDoc(doc(ref), data);
     return {
