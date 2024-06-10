@@ -1,3 +1,5 @@
+"use client";
+
 import type { NavItem } from "@/models/nav";
 import { Stack } from "@mantine/core";
 import { useMemo, type FC } from "react";
@@ -9,6 +11,7 @@ import {
   IconHome,
   IconTextPlus,
 } from "@tabler/icons-react";
+import { useAuth } from "@/providers/AuthProvider";
 
 const links: NavItem[] = [
   {
@@ -29,21 +32,28 @@ const links: NavItem[] = [
     href: "/games",
     icon: IconDeviceGamepad2,
   },
-  {
-    id: "overlay",
-    label: "Overlay",
-    href: "/overlay",
-    icon: IconDeviceDesktop,
-    target: "_blank",
-  },
 ];
 
 const NavLinks: FC = () => {
+  const { user } = useAuth();
   const navLinks = useMemo(
     () => links.map((link) => <NavLink key={link.id} {...link} />),
     [],
   );
-  return <Stack className={classes.container}>{navLinks}</Stack>;
+  return (
+    <Stack className={classes.container}>
+      {navLinks}
+      {user && (
+        <NavLink
+          id="overlay"
+          label="Overlay"
+          href={`/overlay/${user.uid}`}
+          icon={IconDeviceDesktop}
+          target="_blank"
+        />
+      )}
+    </Stack>
+  );
 };
 
 export default NavLinks;
