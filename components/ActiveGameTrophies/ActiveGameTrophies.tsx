@@ -34,7 +34,7 @@ const ActiveGameTrophies: FC<Props> = (props) => {
     <Stack className={classes.container}>
       {activeGame?.lists.map((list) => (
         <Flex key={list.id} className={classes.list}>
-          <Text className={classes.heading}>{list.name}</Text>
+          <Text className={classes.heading}>{list.title}</Text>
           <Grid className={classes.container}>
             {list.trophies.map((trophy) => (
               <GridCol span={3} key={trophy.id}>

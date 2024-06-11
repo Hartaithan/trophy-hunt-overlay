@@ -16,7 +16,7 @@ const ActiveGameTrophy: FC<Props> = (props) => {
       className={classes.container}
       checked={trophy.url === activeTrophy?.url}
       onClick={onTrophyChange}>
-      <Text>{trophy.name}</Text>
+      <Text>{trophy.title}</Text>
       <Checkbox.Indicator ml="auto" />
     </CheckboxCard>
   );

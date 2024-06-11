@@ -16,14 +16,14 @@ export const getTrophyList = (
     const content = cheerio(row).find(select.trophyContent).first();
     const type =
       cheerio(row).find(select.trophyType).attr("title") || "Type not found";
-    const nameElement = content.find("a");
-    const name = nameElement.text().trim();
+    const titleElement = content.find("a");
+    const title = titleElement.text().trim();
     const description = content.contents().last().text().trim();
-    const url = nameElement.attr("href") ?? null;
-    let id = `${index}-${name.toLowerCase().replaceAll(" ", "-")}`;
+    const url = titleElement.attr("href") ?? null;
+    let id = `${index}-${title.toLowerCase().replaceAll(" ", "-")}`;
     if (url) id = url.split("/").pop() ?? id;
-    if (name.length !== 0 && description.length !== 0) {
-      trophies.push({ id, name, description, type, url: SERVICE_URL + url });
+    if (title.length !== 0 && description.length !== 0) {
+      trophies.push({ id, title, description, type, url: SERVICE_URL + url });
     }
   });
   return trophies;

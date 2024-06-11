@@ -8,13 +8,13 @@ import clsx from "clsx";
 
 interface Props extends BoxProps {
   src: string | undefined | null;
-  name: string;
+  title: string;
   isOverlay: boolean;
   imageProps?: Omit<ImageProps, "src" | "alt">;
 }
 
 const GameImage: FC<Props> = (props) => {
-  const { className, src, name, isOverlay, imageProps } = props;
+  const { className, src, title, isOverlay, imageProps } = props;
   const sizeProps = !imageProps ? { height: 56, width: 100 } : imageProps;
   if (!src) return null;
   return (
@@ -22,7 +22,7 @@ const GameImage: FC<Props> = (props) => {
       <Image
         className={classes.image}
         src={src}
-        alt={`${name} image preview`}
+        alt={`${title} image preview`}
         unoptimized
         {...sizeProps}
       />
@@ -37,7 +37,7 @@ const GameImage: FC<Props> = (props) => {
             src={src}
             fill
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            alt={`${name} image preview background`}
+            alt={`${title} image preview background`}
             unoptimized
           />
         </>

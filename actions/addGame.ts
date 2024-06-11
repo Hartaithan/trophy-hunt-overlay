@@ -10,14 +10,14 @@ export const addGame = async (
   item: GameSearchResult,
   user: User,
 ): Promise<ActionResponse> => {
-  const { url, name } = item;
+  const { url, title } = item;
   try {
     let game: Game | null = await fetchGame(url);
     if (!game) {
       console.error("unable to fetch game");
       return {
         status: "error",
-        message: `Unable to add ${name}`,
+        message: `Unable to add ${title}`,
       };
     }
     const ref = collection(store, "games");
@@ -25,13 +25,13 @@ export const addGame = async (
     await setDoc(doc(ref), data);
     return {
       status: "success",
-      message: `${name} successfully added!`,
+      message: `${title} successfully added!`,
     };
   } catch (error) {
     console.info("unable to fetch game", error);
     return {
       status: "error",
-      message: `Unable to add ${name}`,
+      message: `Unable to add ${title}`,
     };
   }
 };

@@ -9,7 +9,7 @@ import { load } from "cheerio";
 const select = {
   query: "h3#breadCrumbs",
   rows: "table.zebra > tbody > tr",
-  name: "td:nth-child(2) > a",
+  title: "td:nth-child(2) > a",
   region: "td:nth-child(2)",
   platforms: "td:nth-child(2) > div.platforms > span.platform",
   image: "td:nth-child(1) > a > img",
@@ -40,10 +40,10 @@ export const searchByQuery = async (
   const rows = cheerio(select.rows);
 
   rows.each((index, result) => {
-    const nameElement = cheerio(result).find(select.name);
-    const name = nameElement.text().trim();
+    const titleElement = cheerio(result).find(select.title);
+    const title = titleElement.text().trim();
 
-    const path = nameElement.attr("href") ?? name;
+    const path = titleElement.attr("href") ?? title;
     const url = SERVICE_URL + path;
     const id = url.split("/").pop() ?? `${index}-${path}`;
 
@@ -69,7 +69,7 @@ export const searchByQuery = async (
     const image = cheerio(result).find(select.image);
     const image_url = image.attr("src");
 
-    results.push({ id, path, name, url, platforms, region, image_url });
+    results.push({ id, path, title, url, platforms, region, image_url });
   });
 
   let nextPage: number | null = null;

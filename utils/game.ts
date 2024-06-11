@@ -12,8 +12,8 @@ const select = {
   list: "#content > div.row > div.col-xs > div.box.no-top-border",
   table: "table.zebra",
   tableRows: "tbody > tr",
-  name: "tbody > tr > td:nth-child(2) > span",
-  nameRow: "table[style='border-bottom: 1px solid #dfdfdf;']",
+  title: "tbody > tr > td:nth-child(2) > span",
+  titleRow: "table[style='border-bottom: 1px solid #dfdfdf;']",
   platforms: "div.platforms",
   platform: "span.platform",
   thumbnail: "div.game-image-holder",
@@ -67,20 +67,22 @@ export const fetchGame = async (
 
   listsEl.each((index, list) => {
     const haveDLC = listsEl.length > 1;
-    const nameRow = cheerio(list).find(select.nameRow);
-    const name = haveDLC
-      ? cheerio(nameRow).find(select.name).text().trim()
+    const titleRow = cheerio(list).find(select.titleRow);
+    const title = haveDLC
+      ? cheerio(titleRow).find(select.title).text().trim()
       : baseTitle;
-    const table = haveDLC ? nameRow.next() : listsEl.first().find(select.table);
+    const table = haveDLC
+      ? titleRow.next()
+      : listsEl.first().find(select.table);
     const rows = table.find(select.tableRows);
     const trophies = getTrophyList(cheerio, rows);
     const count = trophies.length;
 
-    if (name === baseTitle) base = base + trophies.length;
+    if (title === baseTitle) base = base + trophies.length;
     total = total + trophies.length;
-    const id = `${index}-${name.toLowerCase().replaceAll(" ", "-")}`;
+    const id = `${index}-${title.toLowerCase().replaceAll(" ", "-")}`;
 
-    lists.push({ id, name, count, trophies });
+    lists.push({ id, title, count, trophies });
   });
 
   const guideElement = cheerio(select.guide);

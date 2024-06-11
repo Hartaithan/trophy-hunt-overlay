@@ -22,11 +22,11 @@ const SearchResultItem: FC<Props> = (props) => {
 
   const handleAdd = useCallback(
     async (item: GameSearchResult) => {
-      const { name } = item;
+      const { title } = item;
       if (!isAuthenticated(user)) return null;
       const id = notifications.show({
         loading: true,
-        title: `Adding ${name}...`,
+        title: `Adding ${title}...`,
         message:
           "The game is being added, it shouldn't take long, don't reload the page.",
         autoClose: false,
@@ -62,11 +62,11 @@ const SearchResultItem: FC<Props> = (props) => {
       <Flex className={classes.hero}>
         <GameImage
           src={item.image_url}
-          name={item.name}
+          title={item.title}
           isOverlay={isOverlay}
         />
-        <Text className={classes.name} lineClamp={3}>
-          {item.name}
+        <Text className={classes.title} lineClamp={3}>
+          {item.title}
         </Text>
       </Flex>
       <Flex className={classes.details}>

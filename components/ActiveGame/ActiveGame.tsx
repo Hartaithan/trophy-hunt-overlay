@@ -67,7 +67,7 @@ const ActiveGame: FC<Props> = (props) => {
       <GameImage
         className={classes.image}
         src={activeGame.thumbnail}
-        name={activeGame.title}
+        title={activeGame.title}
         isOverlay={activeGame.platforms.includes("PS5")}
         imageProps={{ fill: true }}
       />

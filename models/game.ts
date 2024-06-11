@@ -3,7 +3,7 @@ import type { TrophyCounts, TrophyList } from "./trophy";
 export interface GameSearchResult {
   id: string;
   path: string;
-  name: string;
+  title: string;
   platforms?: string[];
   region: string | null;
   image_url: string | undefined;
