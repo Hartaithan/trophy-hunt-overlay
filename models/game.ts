@@ -1,4 +1,4 @@
-import type { TrophyCounts, TrophyList } from "./trophy";
+import type { ActiveTrophy, TrophyCounts, TrophyList } from "./trophy";
 
 export interface GameSearchResult {
   id: string;
@@ -31,3 +31,8 @@ export interface Game {
 }
 
 export type ActiveGame = Pick<Game, "id" | "title" | "thumbnail">;
+
+export interface ActiveState {
+  game: ActiveGame | null;
+  trophy: ActiveTrophy | null;
+}
