@@ -14,7 +14,7 @@ const ActiveGameTrophy: FC<Props> = (props) => {
   return (
     <CheckboxCard
       className={classes.container}
-      checked={trophy.url === activeTrophy?.url}
+      checked={trophy.id === activeTrophy?.id}
       onClick={onTrophyChange}>
       <Text>{trophy.title}</Text>
       <Checkbox.Indicator ml="auto" />

@@ -16,7 +16,7 @@ const GameListItem: FC<Props> = (props) => {
   return (
     <CheckboxCard
       className={classes.container}
-      checked={activeGame?.title === game.title}
+      checked={activeGame?.id === game.id}
       onClick={onGameChange}>
       <Text>{game.title}</Text>
       <Checkbox.Indicator ml="auto" />
