@@ -2,7 +2,7 @@
 
 import { useDisclosure } from "@mantine/hooks";
 import type { FC, PropsWithChildren } from "react";
-import { AppShell, Burger, Group, Title } from "@mantine/core";
+import { AppShell, Burger, Title } from "@mantine/core";
 import classes from "./layout.module.css";
 import Navbar from "@/components/Navbar/Navbar";
 
@@ -13,19 +13,24 @@ const DashboardLayout: FC<PropsWithChildren> = (props) => {
   return (
     <AppShell
       layout="alt"
+      classNames={classes}
       header={{ height: 45 }}
       navbar={{ width: 300, breakpoint: "sm", collapsed: { mobile: !opened } }}
       padding="md">
       <AppShell.Header>
-        <Group className={classes.header}>
-          <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
-          <Title order={4} visibleFrom="sm">
-            Trophy Hunt Overlay
-          </Title>
-        </Group>
+        <Burger
+          className={classes.menu}
+          opened={opened}
+          onClick={toggle}
+          hiddenFrom="sm"
+          size="sm"
+        />
+        <Title className={classes.title} order={4} visibleFrom="sm">
+          Trophy Hunt Overlay
+        </Title>
       </AppShell.Header>
       <Navbar />
-      <AppShell.Main className={classes.main}>{children}</AppShell.Main>
+      <AppShell.Main>{children}</AppShell.Main>
     </AppShell>
   );
 };

@@ -12,11 +12,11 @@
     "format": "prettier . --write"
   },
   "dependencies": {
-    "@mantine/core": "^7.10.0",
-    "@mantine/form": "^7.10.0",
-    "@mantine/hooks": "^7.10.0",
-    "@mantine/notifications": "^7.10.0",
-    "@tabler/icons-react": "^3.5.0",
+    "@mantine/core": "^7.10.2",
+    "@mantine/form": "^7.10.2",
+    "@mantine/hooks": "^7.10.2",
+    "@mantine/notifications": "^7.10.2",
+    "@tabler/icons-react": "^3.6.0",
     "cheerio": "^1.0.0-rc.12",
     "clsx": "^2.1.1",
     "firebase": "^10.12.0",
