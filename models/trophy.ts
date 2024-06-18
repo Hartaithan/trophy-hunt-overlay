@@ -14,8 +14,11 @@ export interface TrophyList {
 }
 
 export interface TrophyCounts {
-  base: number;
   total: number;
+  platinum: number | null;
+  gold: number;
+  silver: number;
+  bronze: number;
 }
 
 export type ActiveTrophy = Pick<Trophy, "id" | "title">;

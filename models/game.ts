@@ -4,7 +4,7 @@ export interface GameSearchResult {
   id: string;
   path: string;
   title: string;
-  platforms?: string[];
+  platforms: string[];
   region: string | null;
   image_url: string | undefined;
   url: string;

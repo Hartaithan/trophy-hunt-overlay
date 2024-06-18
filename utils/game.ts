@@ -2,7 +2,7 @@
 
 import { load } from "cheerio";
 import { fetchPage } from "./page";
-import { getTrophyList } from "./trophy";
+import { getGameTrophyCounts, getTrophyList } from "./trophy";
 import { baseTitle } from "@/constants/trophy";
 import type { TrophyList } from "@/models/trophy";
 import { SERVICE_URL } from "@/constants/variables";
@@ -62,8 +62,7 @@ export const fetchGame = async (
   const listsEl = cheerio(select.list);
   const lists: TrophyList[] = [];
 
-  let base = 0;
-  let total = 0;
+  const gameCounts = getGameTrophyCounts(cheerio);
 
   listsEl.each((index, list) => {
     const haveDLC = listsEl.length > 1;
@@ -76,13 +75,11 @@ export const fetchGame = async (
       : listsEl.first().find(select.table);
     const rows = table.find(select.tableRows);
     const trophies = getTrophyList(cheerio, rows);
-    const count = trophies.length;
+    const listCount = trophies.length;
 
-    if (title === baseTitle) base = base + trophies.length;
-    total = total + trophies.length;
     const id = `${index}-${title.toLowerCase().replaceAll(" ", "-")}`;
 
-    lists.push({ id, title, count, trophies });
+    lists.push({ id, title, count: listCount, trophies });
   });
 
   const guideElement = cheerio(select.guide);
@@ -96,7 +93,7 @@ export const fetchGame = async (
     thumbnail,
     cover,
     lists,
-    counts: { base, total },
+    counts: gameCounts,
     url: urlFormatted,
     guide,
   };
