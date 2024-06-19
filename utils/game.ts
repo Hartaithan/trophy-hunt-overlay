@@ -2,7 +2,11 @@
 
 import { load } from "cheerio";
 import { fetchPage } from "./page";
-import { getGameTrophyCounts, getTrophyList } from "./trophy";
+import {
+  getGameTrophyCounts,
+  getTrophyList,
+  getTrophyListCounts,
+} from "./trophy";
 import { baseTitle } from "@/constants/trophy";
 import type { TrophyList } from "@/models/trophy";
 import { SERVICE_URL } from "@/constants/variables";
@@ -14,6 +18,8 @@ const select = {
   tableRows: "tbody > tr",
   title: "tbody > tr > td:nth-child(2) > span",
   titleRow: "table[style='border-bottom: 1px solid #dfdfdf;']",
+  listBaseCounts: "tbody > tr > td:nth-child(3)",
+  listCounts: "tbody > tr > td:nth-child(4)",
   platforms: "div.platforms",
   platform: "span.platform",
   thumbnail: "div.game-image-holder",
@@ -70,16 +76,19 @@ export const fetchGame = async (
     const title = haveDLC
       ? cheerio(titleRow).find(select.title).text().trim()
       : baseTitle;
+    const isBase = title === baseTitle;
     const table = haveDLC
       ? titleRow.next()
       : listsEl.first().find(select.table);
     const rows = table.find(select.tableRows);
     const trophies = getTrophyList(cheerio, rows);
     const listCount = trophies.length;
-
+    const listCountsEl = cheerio(list).find(
+      isBase ? select.listBaseCounts : select.listCounts,
+    );
+    const counts = getTrophyListCounts(listCountsEl);
     const id = `${index}-${title.toLowerCase().replaceAll(" ", "-")}`;
-
-    lists.push({ id, title, count: listCount, trophies });
+    lists.push({ id, title, count: listCount, counts, trophies });
   });
 
   const guideElement = cheerio(select.guide);
