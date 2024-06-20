@@ -29,7 +29,16 @@ const DashboardLayout: FC<PropsWithChildren> = (props) => {
           Trophy Hunt Overlay
         </Title>
       </AppShell.Header>
-      <Navbar />
+      <Navbar>
+        <Burger
+          m="md"
+          mb="unset"
+          opened={opened}
+          onClick={toggle}
+          hiddenFrom="sm"
+          size="sm"
+        />
+      </Navbar>
       <AppShell.Main>{children}</AppShell.Main>
     </AppShell>
   );
