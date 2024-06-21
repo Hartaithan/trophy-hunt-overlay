@@ -2,7 +2,8 @@
 
 import type { FC } from "react";
 import type { Game } from "@/models/game";
-import { Checkbox, CheckboxCard, Text } from "@mantine/core";
+import { Checkbox, CheckboxCard, Group, Text } from "@mantine/core";
+import GameImage from "@/components/GameImage/GameImage";
 import classes from "./GameListItem.module.css";
 
 interface Props {
@@ -18,8 +19,15 @@ const GameListItem: FC<Props> = (props) => {
       className={classes.container}
       checked={activeGame?.id === game.id}
       onClick={onGameChange}>
-      <Text>{game.title}</Text>
-      <Checkbox.Indicator ml="auto" />
+      <Group className={classes.row}>
+        <GameImage
+          src={game.thumbnail}
+          title={game.title}
+          isOverlay={game.platforms.includes("PS5")}
+        />
+        <Checkbox.Indicator ml="auto" />
+      </Group>
+      <Text className={classes.title}>{game.title}</Text>
     </CheckboxCard>
   );
 };
