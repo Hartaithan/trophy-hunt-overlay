@@ -10,6 +10,7 @@ import { notifications } from "@mantine/notifications";
 import { setActive } from "@/actions/setActive";
 import { useAuth } from "@/providers/AuthProvider";
 import { IconAlertOctagon, IconCheck } from "@tabler/icons-react";
+import useGameParams from "@/hooks/useGameParams";
 
 interface Props {
   activeGame: Game | null;
@@ -19,6 +20,7 @@ interface Props {
 const ActiveGame: FC<Props> = (props) => {
   const { activeGame, activeTrophy } = props;
   const { user } = useAuth();
+  const { isOverlay } = useGameParams(activeGame);
 
   const handleSubmit = useCallback(async () => {
     if (!user) return;
@@ -68,7 +70,7 @@ const ActiveGame: FC<Props> = (props) => {
         className={classes.image}
         src={activeGame.thumbnail}
         title={activeGame.title}
-        isOverlay={activeGame.platforms.includes("PS5")}
+        isOverlay={isOverlay}
         imageProps={{ fill: true }}
       />
       <Text className={classes.title}>{activeGame.title}</Text>

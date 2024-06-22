@@ -5,6 +5,7 @@ import type { Game } from "@/models/game";
 import { Checkbox, CheckboxCard, Group, Text } from "@mantine/core";
 import GameImage from "@/components/GameImage/GameImage";
 import classes from "./GameListItem.module.css";
+import useGameParams from "@/hooks/useGameParams";
 
 interface Props {
   activeGame: Game | null;
@@ -14,6 +15,7 @@ interface Props {
 
 const GameListItem: FC<Props> = (props) => {
   const { activeGame, game, onGameChange } = props;
+  const { isOverlay } = useGameParams(game);
   return (
     <CheckboxCard
       className={classes.container}
@@ -23,7 +25,7 @@ const GameListItem: FC<Props> = (props) => {
         <GameImage
           src={game.thumbnail}
           title={game.title}
-          isOverlay={game.platforms.includes("PS5")}
+          isOverlay={isOverlay}
         />
         <Checkbox.Indicator ml="auto" />
       </Group>

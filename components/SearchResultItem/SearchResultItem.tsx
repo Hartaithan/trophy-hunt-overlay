@@ -10,6 +10,7 @@ import { addGame } from "@/actions/addGame";
 import { notifications } from "@mantine/notifications";
 import { useAuth } from "@/providers/AuthProvider";
 import { isAuthenticated } from "@/utils/auth";
+import useGameParams from "@/hooks/useGameParams";
 
 interface Props {
   item: GameSearchResult;
@@ -18,7 +19,7 @@ interface Props {
 const SearchResultItem: FC<Props> = (props) => {
   const { item } = props;
   const { user } = useAuth();
-  const isOverlay = item.platforms ? item?.platforms.includes("PS5") : false;
+  const { isOverlay } = useGameParams(item);
 
   const handleAdd = useCallback(
     async (item: GameSearchResult) => {
