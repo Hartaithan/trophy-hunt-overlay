@@ -1,7 +1,8 @@
 import type { FC } from "react";
 import type { Trophy } from "@/models/trophy";
-import { Checkbox, CheckboxCard, Text } from "@mantine/core";
+import { Checkbox, CheckboxCard, Group, Text } from "@mantine/core";
 import classes from "./ActiveGameTrophy.module.css";
+import Image from "next/image";
 
 interface Props {
   trophy: Trophy;
@@ -16,8 +17,17 @@ const ActiveGameTrophy: FC<Props> = (props) => {
       className={classes.container}
       checked={trophy.id === activeTrophy?.id}
       onClick={onTrophyChange}>
-      <Text>{trophy.title}</Text>
-      <Checkbox.Indicator ml="auto" />
+      <Group className={classes.row}>
+        <Image
+          src={trophy.image_url ?? ""}
+          width={50}
+          height={50}
+          alt={trophy.url ?? ""}
+        />
+        <Checkbox.Indicator ml="auto" />
+      </Group>
+      <Text className={classes.title}>{trophy.title}</Text>
+      <Text className={classes.description}>{trophy.description}</Text>
     </CheckboxCard>
   );
 };
