@@ -1,8 +1,10 @@
+export type TrophyType = "platinum" | "gold" | "silver" | "bronze" | "total";
+
 export interface Trophy {
   id: string;
   title: string;
   description: string;
-  type: string;
+  type: TrophyType | string;
   image_url: string | null;
   url: string | null;
 }
