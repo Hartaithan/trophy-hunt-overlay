@@ -11,6 +11,7 @@ import { setActive } from "@/actions/setActive";
 import { useAuth } from "@/providers/AuthProvider";
 import { IconAlertOctagon, IconCheck } from "@tabler/icons-react";
 import useGameParams from "@/hooks/useGameParams";
+import TrophyCounts from "@/components/TrophyCounts/TrophyCounts";
 
 interface Props {
   activeGame: Game | null;
@@ -74,6 +75,7 @@ const ActiveGame: FC<Props> = (props) => {
         imageProps={{ fill: true }}
       />
       <Text className={classes.title}>{activeGame.title}</Text>
+      <TrophyCounts size="sm" mt="xs" counts={activeGame.counts} />
       <Button
         mt="md"
         disabled={!activeGame || !activeTrophy}

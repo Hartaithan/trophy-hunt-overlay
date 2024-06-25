@@ -8,10 +8,13 @@
   overflow: auto;
 }
 
+.header {
+  margin-bottom: var(--mantine-spacing-sm);
+}
+
 .heading {
   font-size: var(--mantine-font-size-lg);
   font-weight: 500;
-  margin-bottom: var(--mantine-spacing-sm);
 }
 
 .list {

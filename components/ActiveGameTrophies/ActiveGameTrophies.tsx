@@ -4,11 +4,12 @@ import {
   type FC,
   type SetStateAction,
 } from "react";
-import { Flex, Grid, GridCol, Stack, Text } from "@mantine/core";
+import { Flex, Grid, GridCol, Group, Stack, Text } from "@mantine/core";
 import classes from "./ActiveGameTrophies.module.css";
 import type { Game } from "@/models/game";
 import type { Trophy } from "@/models/trophy";
 import ActiveGameTrophy from "@/components/ActiveGameTrophy/ActiveGameTrophy";
+import TrophyCounts from "@/components/TrophyCounts/TrophyCounts";
 
 interface Props {
   activeGame: Game | null;
@@ -34,7 +35,10 @@ const ActiveGameTrophies: FC<Props> = (props) => {
     <Stack className={classes.container}>
       {activeGame?.lists.map((list) => (
         <Flex key={list.id} className={classes.list}>
-          <Text className={classes.heading}>{list.title}</Text>
+          <Group className={classes.header}>
+            <Text className={classes.heading}>{list.title}</Text>
+            <TrophyCounts counts={list.counts} size="sm" />
+          </Group>
           <Grid className={classes.container}>
             {list.trophies.map((trophy) => (
               <GridCol span={3} key={trophy.id}>

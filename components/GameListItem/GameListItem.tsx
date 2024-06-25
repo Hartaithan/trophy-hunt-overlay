@@ -6,6 +6,7 @@ import { Checkbox, CheckboxCard, Group, Text } from "@mantine/core";
 import GameImage from "@/components/GameImage/GameImage";
 import classes from "./GameListItem.module.css";
 import useGameParams from "@/hooks/useGameParams";
+import TrophyCounts from "@/components/TrophyCounts/TrophyCounts";
 
 interface Props {
   activeGame: Game | null;
@@ -30,6 +31,7 @@ const GameListItem: FC<Props> = (props) => {
         <Checkbox.Indicator ml="auto" />
       </Group>
       <Text className={classes.title}>{game.title}</Text>
+      <TrophyCounts counts={game.counts} size="md" mt="md" />
     </CheckboxCard>
   );
 };
