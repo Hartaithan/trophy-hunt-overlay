@@ -86,7 +86,7 @@ export const fetchGame = async (
     const listCountsEl = cheerio(list).find(
       isBase ? select.listBaseCounts : select.listCounts,
     );
-    const counts = getTrophyListCounts(listCountsEl);
+    const counts = haveDLC ? getTrophyListCounts(listCountsEl) : gameCounts;
     const id = `${index}-${title.toLowerCase().replaceAll(" ", "-")}`;
     lists.push({ id, title, count: listCount, counts, trophies });
   });
