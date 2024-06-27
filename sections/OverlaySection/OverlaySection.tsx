@@ -13,10 +13,20 @@ interface Props {
 
 const delay = 1000;
 
+type Game = ActiveGame | null;
+type Trophy = ActiveTrophy | null;
+type Data = ActiveGame | ActiveTrophy | null;
+
+const isSame = <T extends Data>(prev: T, next: T): T => {
+  const isSame = prev?.id === next?.id;
+  return isSame ? prev : next;
+};
+
 const OverlaySection: FC<Props> = (props) => {
   const { userId } = props;
-  const [game, setGame] = useState<ActiveGame | null>(null);
-  const [trophy, setTrophy] = useState<ActiveTrophy | null>(null);
+  const [game, setGame] = useState<Game>(null);
+  const [trophy, setTrophy] = useState<Trophy>(null);
+  // TODO: separate visible states
   const [visible, setVisible] = useState(true);
 
   useEffect(() => {
@@ -30,8 +40,8 @@ const OverlaySection: FC<Props> = (props) => {
       const data = snapshot.val();
       setVisible(false);
       const timeout = setTimeout(() => {
-        if (data?.game !== undefined) setGame(data.game);
-        if (data?.trophy !== undefined) setTrophy(data.trophy);
+        setGame((prev) => isSame<Game>(prev, data.game));
+        setTrophy((prev) => isSame<Trophy>(prev, data.trophy));
         clearTimeout(timeout);
       }, delay);
     });
