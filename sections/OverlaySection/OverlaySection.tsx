@@ -6,6 +6,9 @@ import type { ActiveTrophy } from "@/models/trophy";
 import { ref, onValue } from "firebase/database";
 import { database } from "@/utils/firebase";
 import { Flex, Transition } from "@mantine/core";
+import classes from "./OverlaySection.module.css";
+import OverlayGame from "@/components/OverlayGame/OverlayGame";
+import OverlayTrophy from "@/components/OverlayTrophy/OverlayTrophy";
 
 interface Props {
   userId: string;
@@ -48,20 +51,12 @@ const OverlaySection: FC<Props> = (props) => {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <Flex h="100%" direction="column" justify="center" align="center">
+    <Flex className={classes.container}>
       <Transition mounted={visible} keepMounted>
-        {(styles) => (
-          <pre style={{ ...styles, whiteSpace: "pre-wrap" }}>
-            active game {JSON.stringify(game, null, 2)}
-          </pre>
-        )}
+        {(style) => <OverlayGame game={game} style={style} />}
       </Transition>
       <Transition mounted={visible} keepMounted>
-        {(styles) => (
-          <pre style={{ ...styles, whiteSpace: "pre-wrap" }}>
-            active trophy {JSON.stringify(trophy, null, 2)}
-          </pre>
-        )}
+        {(style) => <OverlayTrophy trophy={trophy} style={style} />}
       </Transition>
     </Flex>
   );
