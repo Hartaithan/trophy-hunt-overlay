@@ -2,7 +2,7 @@
 
 import type { Dispatch, MutableRefObject, SetStateAction } from "react";
 import { useEffect, useRef, useState, type FC } from "react";
-import type { ActiveGame } from "@/models/game";
+import type { ActiveGame, ActiveState } from "@/models/game";
 import type { ActiveTrophy } from "@/models/trophy";
 import { ref, onValue } from "firebase/database";
 import { database } from "@/utils/firebase";
@@ -47,11 +47,11 @@ const OverlaySection: FC<Props> = (props) => {
 
   useEffect(() => {
     onValue(ref(database, userId), (snapshot) => {
-      const data = snapshot.val();
+      const data: ActiveState = snapshot.val();
       setData<Game>(data.game, gameRef, setGame);
       setData<Trophy>(data.trophy, trophyRef, setTrophy);
     });
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [userId]);
 
   return (
     <Flex className={classes.container}>
