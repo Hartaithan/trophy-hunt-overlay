@@ -30,4 +30,7 @@ export interface TrophyListResponse {
   counts: TrophyCounts;
 }
 
-export type ActiveTrophy = Pick<Trophy, "id" | "title">;
+export type ActiveTrophy = Pick<
+  Trophy,
+  "id" | "title" | "description" | "image_url"
+>;

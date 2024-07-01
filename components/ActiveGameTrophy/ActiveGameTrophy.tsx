@@ -23,6 +23,7 @@ const ActiveGameTrophy: FC<Props> = (props) => {
           width={50}
           height={50}
           alt={trophy.url ?? ""}
+          unoptimized
         />
         <Checkbox.Indicator ml="auto" />
       </Group>

@@ -19,6 +19,8 @@ export const setActive = async (
     const activeTrophy: ActiveTrophy = {
       id: trophy.id,
       title: trophy.title,
+      description: trophy.description,
+      image_url: trophy.image_url,
     };
 
     const reference = ref(database, userId);
