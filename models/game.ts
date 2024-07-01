@@ -30,7 +30,7 @@ export interface Game {
   message?: string;
 }
 
-export type ActiveGame = Pick<Game, "id" | "title" | "thumbnail">;
+export type ActiveGame = Pick<Game, "id" | "title" | "thumbnail" | "platforms">;
 
 export interface ActiveState {
   game: ActiveGame | null;

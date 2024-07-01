@@ -14,6 +14,7 @@ export const setActive = async (
       id: game.id,
       title: game.title,
       thumbnail: game.thumbnail,
+      platforms: game.platforms,
     };
     const activeTrophy: ActiveTrophy = {
       id: trophy.id,
