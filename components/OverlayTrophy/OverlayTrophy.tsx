@@ -6,17 +6,21 @@ import { transition } from "@/constants/animation";
 import classes from "./OverlayTrophy.module.css";
 import { Flex, Text } from "@mantine/core";
 import Image from "next/image";
+import clsx from "clsx";
 
 interface Props extends HTMLMotionProps<"div"> {
   trophy: ActiveTrophy | null;
 }
 
 const OverlayTrophy: FC<Props> = (props) => {
-  const { trophy, ...rest } = props;
+  const { trophy, className, ...rest } = props;
   return (
     <AnimatePresence>
       {trophy && (
-        <motion.div className={classes.container} {...transition} {...rest}>
+        <motion.div
+          className={clsx(classes.container, className)}
+          {...transition}
+          {...rest}>
           <Image
             src={trophy.image_url ?? ""}
             width={50}

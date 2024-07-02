@@ -10,6 +10,8 @@ import { Flex } from "@mantine/core";
 import classes from "./OverlaySection.module.css";
 import OverlayGame from "@/components/OverlayGame/OverlayGame";
 import OverlayTrophy from "@/components/OverlayTrophy/OverlayTrophy";
+import type { Position } from "@/models/settings";
+import clsx from "clsx";
 
 interface Props {
   userId: string;
@@ -43,6 +45,7 @@ const OverlaySection: FC<Props> = (props) => {
   let gameRef = useRef<Game>(null);
   const [trophy, setTrophy] = useState<Trophy>(null);
   let trophyRef = useRef<Trophy>(null);
+  const [position] = useState<Position>("top-left");
 
   useEffect(() => {
     onValue(ref(database, userId), (snapshot) => {
@@ -54,8 +57,10 @@ const OverlaySection: FC<Props> = (props) => {
 
   return (
     <Flex className={classes.container}>
-      <OverlayGame game={game} />
-      <OverlayTrophy trophy={trophy} />
+      <Flex className={clsx(classes.content, classes[position])}>
+        <OverlayGame className={classes.game} game={game} />
+        <OverlayTrophy className={classes.trophy} trophy={trophy} />
+      </Flex>
     </Flex>
   );
 };
